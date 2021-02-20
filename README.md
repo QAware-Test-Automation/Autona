@@ -1,14 +1,10 @@
 # Autona
+Automate machines from your browser. Send UI commands such as keystrokes, simulate mouse clicks, run apps and more, with a simple HTTP server that you can customize.
 
-## Introduction
-Automate machines from your browser. Send UI commands like keystrokes, simulate mouse clicks, run apps and more, with a simple HTTP server you can customize.
+## Syntax
+Write text to be typed and special commands inside braces {}. Examples:
 
-## UI Automation
-
-### Syntax
-Write text to be typed and special commands inside braces {}. 
-
-For example, to open notepad (in Windows), wait 5 seconds for the application to show up, and type "Hello World!":
+Open notepad (in Windows), wait 5 seconds for the application to show up, and type "Hello World!":
 ```
 {open notepad}{wait 5}Hello World!
 ```
@@ -30,7 +26,7 @@ Send a special keystroke or hotkey:
 
 Customize commands to your own language and preferences.
 
-### Supported libraries
+## Supported libraries
 Different automation libraries have advantages and drawbacks in various systems, check their documentation and issues:
 
 * [AutoPy](https://github.com/autopilot-rs/autopy#installation) (Linux/MacOS/Windows)
