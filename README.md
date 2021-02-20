@@ -28,6 +28,6 @@ Different automation libraries have advantages and drawbacks in various systems,
 
 * [AutoPy](https://github.com/autopilot-rs/autopy#installation) (Linux/MacOS/Windows)
 * [PyAutoGUI](https://github.com/asweigart/pyautogui) (Linux/MacOS/Windows)
-* [AutoIt](https://www.autoitscript.com/site/autoit/downloads/) (Windows with standalone executable)
+* [AutoIt](https://www.autoitscript.com/site/autoit/downloads/) (Windows)
 
 Or add your preferred library.
