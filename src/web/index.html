@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--
+AUTONA - UI automation server
+Copyright (C) 2021 Marco Alvarado
+Visit http://qaware.org
+-->
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{title}</title>
+        <style>
+html
+{
+    overflow-y: scroll;
+}
+
+body
+{
+    margin: 0;
+    background: black;
+}
+
+.commands,
+.history,
+.result
+{
+    box-sizing: border-box;
+    border: 1px solid green;
+    padding: 4px;
+    font-size: 14px;
+    font-family: 'Courier New', Courier, monospace;
+    -moz-tab-size : 4;
+    -o-tab-size : 4;
+    tab-size : 4;
+    color: chartreuse;
+    background: black;
+}
+
+.commands
+{
+    width: calc(100vw - 24px);
+}
+
+.history,
+.result
+{
+    width: calc(50vw - 14px);
+}
+
+.commands:focus,
+.history:focus,
+.result:focus
+{
+    border: 1px solid chartreuse;    
+}
+
+.screen
+{
+    width: 720px;
+    max-width: calc(100vw - 24px);
+}
+
+.position
+{
+    position: absolute;
+    margin-left: 24px;
+    padding: 0 2px; 
+    font-size: 14px;
+    font-family: 'Courier New', Courier, monospace;
+    background: chartreuse;
+    pointer-events: none;
+}
+        </style>
+        <script>
+var commands = null;
+
+
+
+function Start()
+{
+    commands = document.querySelector('.commands');
+    commands.focus();
+}
+        </script>
+    </head>
+    <body onload="Start()">
+        <form method="post">
+            <textarea class="commands" name="commands"
+                placeholder="enter text and commands, run with ctrl+enter, run selected with shift+enter">{commands}</textarea>
+            <textarea class="history" placeholder="history" readonly>{history}</textarea>
+            <textarea class="result" placeholder="result" readonly>{result}</textarea>
+        </form>
+        <img class="screen" src="{screen}" data-width="{screenWidth}" data-height="{screenHeight}">
+        <div class="position"></div>
+    </body>
+</html>

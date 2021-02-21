@@ -5,6 +5,8 @@
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 
+import platform
+
 
 
 class Service(
@@ -15,9 +17,12 @@ class Service(
         parameters):
 
         print(parameters)
-        response = 'Hello there!'
+
+        html = open('web/index.html', encoding = 'utf-8').read()
+        html = html.replace('{title}', platform.platform(), 1)
+
         self.RespondHeaders()
-        self.wfile.write(response.encode('utf-8'))
+        self.wfile.write(html.encode('utf-8'))
 
 
 
