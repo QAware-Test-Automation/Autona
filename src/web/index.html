@@ -80,6 +80,32 @@ var commands = null;
 function Start()
 {
     commands = document.querySelector('.commands');
+    screen = document.querySelector('.screen');
+    position = document.querySelector('.position');
+
+    screen.addEventListener('mousemove', 
+        function (
+            event)
+        {
+            var e = event.target;
+            var x = Math.round(event.offsetX * e.getAttribute('data-width') / e.width);
+            var y = Math.round(event.offsetY * e.getAttribute('data-height') / e.height);
+            position.innerText = '' + x + ' ' + y;
+            position.style.left = (e.offsetLeft - e.scrollLeft + event.offsetX) + 'px';
+            position.style.top = (e.offsetTop - e.scrollTop + event.offsetY) + 'px';
+        });
+    screen.addEventListener('mouseup',
+        function (
+            event)
+        {
+            navigator.clipboard.writeText(position.innerText).then(
+                function() 
+                {
+                    position.innerText = '> copied <';
+                    commands.focus();
+                });
+        });
+
     commands.focus();
 }
         </script>

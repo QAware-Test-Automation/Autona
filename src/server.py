@@ -4,8 +4,11 @@
 
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
+import base64
 
 import platform
+
+automator = None
 
 
 
@@ -18,9 +21,19 @@ class Service(
 
         print(parameters)
 
+        # Capture the screen.
+        screen = automator.CaptureScreen()
+        screen = 'data:image/png;base64,' + str(base64.b64encode(screen).decode('utf-8'))
+        (screenWidth, screenHeight) = automator.ScreenSize()
+
+        # Generate HTML.
         html = open('web/index.html', encoding = 'utf-8').read()
         html = html.replace('{title}', platform.platform(), 1)
+        html = html.replace('{screen}', screen, 1)
+        html = html.replace('{screenWidth}', str(screenWidth), 1)
+        html = html.replace('{screenHeight}', str(screenHeight), 1)
 
+        # Send response.
         self.RespondHeaders()
         self.wfile.write(html.encode('utf-8'))
 
