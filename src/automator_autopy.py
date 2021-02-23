@@ -5,7 +5,9 @@
 from automator import Automator
 
 import autopy
-from language_en_autopy import Language
+from language_en_autopy import language
+
+screenFile = 'screen.png'
 
 
 
@@ -72,10 +74,9 @@ class AutomatorAutoPy(
     def CaptureScreen(
         self):
 
-        filename = 'screen.png'
         bitmap = autopy.bitmap.capture_screen()
-        bitmap.save(filename, 'png')
-        bytes = open(filename, 'rb').read()
+        bitmap.save(screenFile, 'png')
+        bytes = open(screenFile, 'rb').read()
         return bytes
 
 
@@ -86,7 +87,7 @@ class AutomatorAutoPy(
         scale = autopy.screen.scale()
         width = autopy.screen.size()[0] * scale
         height = autopy.screen.size()[1] * scale
-        return (width, height)
+        return (int(width), int(height))
 
 
 
@@ -95,7 +96,7 @@ class AutomatorAutoPy(
         name):
 
         try:
-            return Language.buttons[name]
+            return language[name]
         except:
             pass
 
@@ -106,7 +107,7 @@ class AutomatorAutoPy(
         name):
 
         try:
-            return Language.keys[name]
+            return language[name]
         except:
             return name
 
@@ -117,6 +118,6 @@ class AutomatorAutoPy(
         name):
 
         try:
-            return Language.modifierKeys[name]
+            return language[name]
         except:
             pass

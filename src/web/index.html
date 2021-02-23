@@ -74,6 +74,8 @@ body
         </style>
         <script>
 var commands = null;
+var screen = null;
+var position = null;
 
 
 
@@ -83,6 +85,39 @@ function Start()
     screen = document.querySelector('.screen');
     position = document.querySelector('.position');
 
+    commands.addEventListener('keydown',
+        function (
+            event)
+        {
+            var e = event.target;
+
+            if (event.keyCode === 9)    // tab
+            {
+                event.preventDefault();
+                var p0 = e.selectionStart;
+                var p1 = e.selectionEnd;
+                e.value = e.value.substring(0, p0) + '\t' + e.value.substring(p0);
+                e.selectionStart = p0 + 1;
+                e.selectionEnd = p1 + 1;
+            }
+            else if (event.shiftKey && event.keyCode === 13)    // shift+enter
+            {
+                event.preventDefault();
+                var f = e.form;
+                var i0 = document.createElement('input');
+                var i1 = document.createElement('input');
+                i0.type = 'hidden'; i0.name = 'start'; i0.value = e.selectionStart;
+                i1.type = 'hidden'; i1.name = 'end';   i1.value = e.selectionEnd;
+                f.appendChild(i0);
+                f.appendChild(i1);
+                f.submit();
+            }
+            else if (event.ctrlKey && event.keyCode === 13) // ctrl+enter
+            {
+                event.preventDefault();
+                e.form.submit();
+            }
+        });
     screen.addEventListener('mousemove', 
         function (
             event)

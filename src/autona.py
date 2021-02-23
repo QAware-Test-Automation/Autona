@@ -5,21 +5,21 @@
 from automator_autopy import AutomatorAutoPy
 
 from http.server import HTTPServer
-import server
+from server import Service
 
 
 
 def Serve(
-    automator,
+    automatorClass,
     host = '0.0.0.0',
     port = 80):
 
     print(f'Autona serving at {host}:{port}')
-    server.automator = automator
-    service = HTTPServer((host, port), server.Service)
-    service.serve_forever()
+    Service.automator = automatorClass()
+    server = HTTPServer((host, port), Service)
+    server.serve_forever()
 
 
 
 if __name__ == '__main__':
-    Serve(AutomatorAutoPy())
+    Serve(AutomatorAutoPy)
