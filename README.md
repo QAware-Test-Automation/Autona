@@ -31,3 +31,14 @@ Different automation libraries have advantages and drawbacks in various systems,
 * [AutoIt](https://www.autoitscript.com/site/autoit/downloads/) (Windows)
 
 Or add your preferred library.
+
+## To-do
+
+* HTTP Server ✔
+* Front-end ✔
+* AutoPy automator ✔
+* Command interpreter ✔
+* More languages
+* PyAutoGUI automator
+* AutoIt automator
+* Image recognition
