@@ -34,11 +34,11 @@ Or add your preferred library.
 
 ## To do
 
-* HTTP Server ✔
+* HTTP server ✔
 * Front-end ✔
 * AutoPy automator ✔
 * Command interpreter ✔
-* More languages
+* Languages ✔
 * PyAutoGUI automator
 * AutoIt automator
 * Image recognition
