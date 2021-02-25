@@ -116,7 +116,7 @@ class Service(
                 elif Compare(commands, languageCommands['wait'], i):
                     seconds = 5
                     if not Compare(commands, '}', i):
-                        delay = float(GetValue(commands, i))
+                        seconds = float(GetValue(commands, i))
                         Compare(commands, '}', i)
                     time.sleep(seconds)
 
@@ -164,13 +164,13 @@ class Service(
                             if name in languageModifierKeys:
                                 keys.append(name)
 
-                            elif name in languageKeys:
+                            elif name in languageKeys or len(name) == 1:
                                 keys.append(name)
                                 Compare(commands, '}', i)
                                 Service.automator.TapKeys(keys, toggle, down)
                                 break
 
-                            if name in languageButtons:
+                            elif name in languageButtons:
                                 button = name
                                 Compare(commands, '}', i)
                                 Service.automator.ClickButton(button, toggle, down)
