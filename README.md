@@ -16,7 +16,7 @@ Move the mouse cursor to a position in the screen (x, y in pixels) and left-clic
 {move 720 480}{clk_lft}{clk_lft}
 ```
 
-Send special keystrokes or hotkeys:
+Send special keystrokes or hotkeys ([AutoPy has an issue in Windows](https://github.com/autopilot-rs/autopy/issues/54)):
 ```
 {ctrl a}{ctrl c}{alt tab}{ctrl v}
 ```
