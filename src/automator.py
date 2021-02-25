@@ -24,7 +24,7 @@ class Automator():
 
     def TapKeys(
         self,
-        keys,
+        keys,   # : array
         toggle = False, down = True):
 
         return

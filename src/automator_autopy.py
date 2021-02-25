@@ -5,7 +5,7 @@
 from automator import Automator
 
 import autopy
-from language_en_autopy import language
+from language_en_autopy import languageButtons, languageKeys, languageModifierKeys
 
 screenFile = 'screen.png'
 
@@ -50,11 +50,11 @@ class AutomatorAutoPy(
 
     def TapKeys(
         self,
-        keys,
+        keys,   # : array
         toggle = False, down = True):
 
         # Get main key from the end.
-        key = self.Tecla(keys[-1])
+        key = self.Key(keys[-1])
 
         # Add modifier keys from the beginning.
         modifiers = []
@@ -96,7 +96,7 @@ class AutomatorAutoPy(
         name):
 
         try:
-            return language[name]
+            return languageButtons[name]
         except:
             pass
 
@@ -107,7 +107,7 @@ class AutomatorAutoPy(
         name):
 
         try:
-            return language[name]
+            return languageKeys[name]
         except:
             return name
 
@@ -118,6 +118,6 @@ class AutomatorAutoPy(
         name):
 
         try:
-            return language[name]
+            return languageModifierKeys[name]
         except:
             pass

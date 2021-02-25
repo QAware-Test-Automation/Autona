@@ -13,13 +13,14 @@ import os
 import platform
 
 from utils import Integer
-from language_en import language
+from language_en import languageCommands
+from language_en_autopy import languageButtons, languageKeys, languageModifierKeys
 
 historyFile = 'history.txt'
 
 
 
-# Do you require a multi-threading or SSL server? Contact us at autona@qaware.org
+# Do you require a multi-threading or HTTPS server? Contact us at autona@qaware.org
 class Service(
     BaseHTTPRequestHandler):
 
@@ -38,6 +39,7 @@ class Service(
         page = ''
 
         if paths == ['']:  # root path
+            commands = ''
             history = ''
             result = ''
 
@@ -89,59 +91,96 @@ class Service(
         delay = 0.2
 
         while i.value < end:
-            if Compare(commands, '{', i):
-                if Compare(commands, '{}', i):
-                    if delay > 0: time.sleep(delay)
-                    Service.automator.TapKeys('{')
+            if Compare(commands, '{', i):   # command
 
-                elif Compare(commands, '}}', i):
+                if Compare(commands, '{', i):
+                    Compare(commands, '}', i)
                     if delay > 0: time.sleep(delay)
-                    Service.automator.TapKeys('}')
+                    Service.automator.TapKeys(['{'])
 
-                elif Compare(commands, language['slow'], i):
+                elif Compare(commands, '}', i):
+                    Compare(commands, '}', i)
+                    if delay > 0: time.sleep(delay)
+                    Service.automator.TapKeys(['}'])
+
+                elif Compare(commands, languageCommands['slow'], i):
                     delay = 0.2
                     if not Compare(commands, '}', i):
                         delay = float(GetValue(commands, i))
                         Compare(commands, '}', i)
 
-                elif Compare(commands, language['fast'], i):
+                elif Compare(commands, languageCommands['fast'], i):
                     delay = 0
                     Compare(commands, '}', i)
 
-                elif Compare(commands, language['wait'], i):
+                elif Compare(commands, languageCommands['wait'], i):
                     seconds = 5
                     if not Compare(commands, '}', i):
                         delay = float(GetValue(commands, i))
                         Compare(commands, '}', i)
                     time.sleep(seconds)
 
-                elif Compare(commands, language['move'], i):
+                elif Compare(commands, languageCommands['move'], i):
                     x = float(GetValue(commands, i))
                     y = float(GetValue(commands, i))
                     Compare(commands, '}', i)
                     Service.automator.MovePointer(x, y, delay > 0)
 
-                elif Compare(commands, language['press'], i):
-                    Compare(commands, '}', i)
-
-                elif Compare(commands, language['release'], i):
-                    Compare(commands, '}', i)
-
-                elif Compare(commands, language['open'], i):
+                elif Compare(commands, languageCommands['open'], i):
                     file = GetValue(commands, i)
                     Compare(commands, '}', i)
                     os.startfile(file)
 
-                elif Compare(commands, language['system'], i):
+                elif Compare(commands, languageCommands['system'], i):
                     Compare(commands, '}', i)
                     (screenWidth, screenHeight) = Service.automator.ScreenSize()
                     result += \
                         'system: ' + platform.platform() + '\n' \
                         'screen: ' + str(screenWidth) + ' ' + str(screenHeight) + '\n'
 
-                elif Compare(commands, language['clear'], i):
+                elif Compare(commands, languageCommands['clear'], i):
                     Compare(commands, '}', i)
                     open(historyFile, 'w+', encoding = 'utf-8').write('')
+
+                else:   # buttons and keys
+                    button = ''
+                    keys = []
+                    toggle = False
+                    down = False
+
+                    while not Compare(commands, '}', i):
+
+                        if Compare(commands, languageCommands['press'], i):
+                            toggle = True
+                            down = True
+
+                        elif Compare(commands, languageCommands['release'], i):
+                            toggle = True
+                            down = False
+
+                        else:
+                            name = GetValue(commands, i)
+
+                            if name in languageModifierKeys:
+                                keys.append(name)
+
+                            elif name in languageKeys:
+                                keys.append(name)
+                                Compare(commands, '}', i)
+                                Service.automator.TapKeys(keys, toggle, down)
+                                break
+
+                            if name in languageButtons:
+                                button = name
+                                Compare(commands, '}', i)
+                                Service.automator.ClickButton(button, toggle, down)
+                                break
+
+            else:   # character as key
+                key = commands[i.value]
+                i += 1
+                if delay > 0: time.sleep(delay)
+                Service.automator.TapKeys([key])
 
         return result
 

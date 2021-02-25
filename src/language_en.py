@@ -2,9 +2,7 @@
 # Copyright (C) 2021 Marco Alvarado
 # Visit http://qaware.org
 
-language = {
-    
-    # Commands:
+languageCommands = {
     'slow': 'slow',
     'fast': 'fast',
     'wait': 'wait',

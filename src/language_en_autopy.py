@@ -4,17 +4,16 @@
 
 import autopy
 
-language = {
-    
-    # Buttons:
+languageButtons = {
     'clk_lft': autopy.mouse.Button.LEFT,
     'click_left': autopy.mouse.Button.LEFT,
     'clk_mid': autopy.mouse.Button.MIDDLE,
     'click_middle': autopy.mouse.Button.MIDDLE,
     'clk_rgt': autopy.mouse.Button.RIGHT,
     'click_right': autopy.mouse.Button.RIGHT,
+    }
 
-    # Keys:
+languageKeys = {
     'esc': autopy.key.Code.ESCAPE,
     'escape': autopy.key.Code.ESCAPE,
     'f1': autopy.key.Code.F1,
@@ -82,8 +81,9 @@ language = {
     'page_up': autopy.key.Code.PAGE_UP,
     'pg_down': autopy.key.Code.PAGE_DOWN,
     'page_down': autopy.key.Code.PAGE_DOWN,
+    }
 
-    # Modifier keys:
+languageModifierKeys = {
     'shift': autopy.key.Modifier.SHIFT,
     'ctrl': autopy.key.Modifier.CONTROL,
     'cmd': autopy.key.Modifier.META,
