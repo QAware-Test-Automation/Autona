@@ -32,7 +32,7 @@ Different automation libraries have advantages and drawbacks in various systems,
 
 Or add your preferred library.
 
-## To-do
+## To do
 
 * HTTP Server ✔
 * Front-end ✔
