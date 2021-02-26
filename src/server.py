@@ -13,7 +13,7 @@ import os
 import platform
 
 from utils import Integer
-from language_en import languageCommands
+from language_en import languageCommands, languageWeb
 from language_en_autopy import languageButtons, languageKeys, languageModifierKeys
 
 historyFile = 'history.txt'
@@ -68,11 +68,15 @@ class Service(
             page = open('web/index.html', encoding = 'utf-8').read()
             page = page.replace('{title}', html.escape(platform.platform(), 1))
             page = page.replace('{commands}', html.escape(commands, 1))
+            page = page.replace('{commandsHint}', html.escape(languageWeb['commandsHint'], 1))
             page = page.replace('{history}', html.escape(history, 1))
+            page = page.replace('{historyHint}', html.escape(languageWeb['historyHint'], 1))
             page = page.replace('{result}', html.escape(result, 1))
+            page = page.replace('{resultHint}', html.escape(languageWeb['resultHint'], 1))
             page = page.replace('{screen}', screen, 1)
             page = page.replace('{screenWidth}', str(screenWidth), 1)
             page = page.replace('{screenHeight}', str(screenHeight), 1)
+            page = page.replace('{copied}', html.escape(languageWeb['copied'], 1))
 
         # Send response.
         self.RespondHeaders()

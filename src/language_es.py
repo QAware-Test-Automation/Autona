@@ -13,3 +13,10 @@ languageCommands = {
     'system': 'sistema',
     'clear': 'limpia',
     }
+
+languageWeb = {
+    'commandsHint': 'ingresa texto y comandos, ejecuta con ctrl+intro, ejecuta selección con shift+intro',
+    'historyHint': 'historia de comandos',
+    'resultHint': 'result',
+    'copied': 'copiado',
+    }

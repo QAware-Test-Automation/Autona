@@ -13,3 +13,10 @@ languageCommands = {
     'system': 'system',
     'clear': 'clear',
     }
+
+languageWeb = {
+    'commandsHint': 'enter text and commands, run with ctrl+enter, run selected with shift+enter',
+    'historyHint': 'command history',
+    'resultHint': 'result',
+    'copied': 'copied',
+    }

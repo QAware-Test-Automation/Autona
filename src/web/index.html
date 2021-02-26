@@ -136,7 +136,7 @@ function Start()
             navigator.clipboard.writeText(position.innerText).then(
                 function() 
                 {
-                    position.innerText = '> copied <';
+                    position.innerText = '> {copied} <';
                     commands.focus();
                 });
         });
@@ -148,9 +148,9 @@ function Start()
     <body onload="Start()">
         <form method="post">
             <textarea class="commands" name="commands"
-                placeholder="enter text and commands, run with ctrl+enter, run selected with shift+enter">{commands}</textarea>
-            <textarea class="history" placeholder="history" readonly>{history}</textarea>
-            <textarea class="result" placeholder="result" readonly>{result}</textarea>
+                placeholder="{commandsHint}">{commands}</textarea>
+            <textarea class="history" placeholder="{historyHint}" readonly>{history}</textarea>
+            <textarea class="result" placeholder="{resultHint}" readonly>{result}</textarea>
         </form>
         <img class="screen" src="{screen}" data-width="{screenWidth}" data-height="{screenHeight}">
         <div class="position"></div>
