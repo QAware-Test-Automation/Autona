@@ -11,7 +11,7 @@ Open notepad (in Windows), wait 5 seconds for the application to show up, and ty
 {open notepad}{wait 5}Hello World!
 ```
 
-Move the mouse cursor to a position in the screen (x, y in pixels) and left-click twice:
+Move the mouse cursor to a position in the screen (x, y in pixels) and double-click the left mouse button:
 ```
 {move 720 480}{clk_lft}{clk_lft}
 ```
